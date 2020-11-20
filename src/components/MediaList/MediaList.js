@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import DetailPage from '../DetailPage/DetailPage'
+import { Link } from "react-router-dom";
 
 class MediaList extends Component {
     render() {
-        const media = this.props.movies.map(item => {
-            return <DetailPage item={item} key={item.id} />
+        const test = this.props.movies ? this.props.movies : this.props.shows
+        const media = test.map(item => {
+            return (
+                <div key={item.id}>
+                    <p><Link to={"/movies/" + item.id}>{item.title}</Link></p>
+                </div>
+            )
         })
 
         return (

@@ -4,6 +4,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Nav from '../Nav/Nav'
 import MediaList from '../MediaList/MediaList'
+import DetailPage from '../DetailPage/DetailPage'
 
 class App extends Component {
   constructor() {
@@ -13,6 +14,23 @@ class App extends Component {
         {
           id: 24428,
           title: "The Avengers",
+          poster_path: "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+          backdrop_path: "/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg",
+          releaseDate: "2012-04-25",
+          overview: "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+          vote_average: 7.7,
+        },
+        {
+          id: 2,
+          title: "Avengers: Age of Ultron",
+          poster_path: "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+          backdrop_path: "/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg",
+          releaseDate: "2012-04-25",
+          overview: "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+          vote_average: 7.7,
+        },        {
+          id: 3,
+          title: "Avengers: Infinity War",
           poster_path: "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
           backdrop_path: "/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg",
           releaseDate: "2012-04-25",
@@ -44,6 +62,7 @@ class App extends Component {
           <Switch>
             <Route path="/movies" render={() => <MediaList movies={this.state.listOfMovies} /> }/>
             <Route path="/shows" render={() => <MediaList shows={this.state.listOfTvShows} /> }/>
+            <Route path="/movies/:id" render={() => <DetailPage /> }/>
           </Switch>
         </main>
       </div>

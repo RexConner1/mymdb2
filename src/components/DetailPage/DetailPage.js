@@ -1,6 +1,6 @@
 import React, { Component } from "react"; 
 
-class  DetailPage extends Component {
+class DetailPage extends Component {
     render(){
 // let DetailPage = props => {
 //     let details 
@@ -27,7 +27,7 @@ class  DetailPage extends Component {
     return (
         <div className='film-details'>
             <h1>DETAILS</h1>
-            {details}
+            {/* {details} */}
         </div>
     )
 }
