@@ -24,12 +24,13 @@ class DetailPage extends Component {
 
     //     )
     // }
-    const movie = this.props.movies.find(movie => movie.id == this.props.match.params.id)
+    let media = this.props.movies ? this.props.movies : this.props.shows
+    media = media.find(info => info.id == this.props.match.params.id)
 
     return (
         <div className='film-details'>
             <h1>DETAILS</h1>
-            <h2>{movie.title}</h2>
+            <h2>{this.props.movies ? media.title : media.name}</h2>
             {/* {details} */}
         </div>
     )
