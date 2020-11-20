@@ -62,7 +62,8 @@ class App extends Component {
           <Switch>
             <Route path="/movies" render={() => <MediaList movies={this.state.listOfMovies} /> }/>
             <Route path="/shows" render={() => <MediaList shows={this.state.listOfTvShows} /> }/>
-            <Route path="/movies/:id" render={() => <DetailPage /> }/>
+            <Route path="/movie/:id" render={() => <DetailPage /> }/>
+            <Route path="/show/:id" render={() => <DetailPage /> }/>
           </Switch>
         </main>
       </div>
