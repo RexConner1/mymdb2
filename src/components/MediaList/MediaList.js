@@ -3,8 +3,8 @@ import DetailPage from '../DetailPage/DetailPage'
 
 class MediaList extends Component {
     render() {
-        const media = this.props.media.map(item => {
-            <DetailPage media={item} key={item.id} />
+        const media = this.props.movies.map(item => {
+            return <DetailPage item={item} key={item.id} />
         })
 
         return (
