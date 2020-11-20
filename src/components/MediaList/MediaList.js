@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
+import DetailPage from '../DetailPage/DetailPage'
 
 class MediaList extends Component {
     render() {
-        const media = this.props.media.map(singleMedia => {
-            <DetailPage media={singleMedia} key={singleMedia.id} />
+        const media = this.props.media.map(item => {
+            <DetailPage media={item} key={item.id} />
         })
 
         return (
             <div>
-                <p>MediaList</p>
+                {media}
             </div>
         );
     }
