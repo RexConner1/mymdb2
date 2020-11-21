@@ -9,7 +9,16 @@ class MediaList extends Component {
     }
 
     searchForUPC = async(upcNumber='786936858136') => {
-        const response = await axios.get(`https://api.upcdatabase.org/product/786936858136?apikey=2F1653F46E6223E30135DB3D80B8C22D`)
+        const response = await axios({
+            method: 'get',
+            url: 'https://api.upcdatabase.org/product/786936858136?apikey=2F1653F46E6223E30135DB3D80B8C22D',
+            headers: { 
+                "Access-Control-Allow-Origin": "*",
+                'x-apikey': '2F1653F46E6223E30135DB3D80B8C22D',
+                'Cookie': 'upcdatabaseorg=lkgb06nvf39jequ927ki6nkf9j',
+                'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            }
+        })
         console.log(response.data);
     }
 
