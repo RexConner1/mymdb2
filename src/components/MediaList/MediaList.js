@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 class MediaList extends Component {
-    searchForTitle = async() => {
-        const response = await axios.get('https://api.themoviedb.org/3/search/tv?api_key=66b22cb2598318b06f69e25cb751c2ad&query=Lost')
+    constructor() {
+        super()
+    }
+
+    searchForTitle = async(media="tv", title="Lost") => {
+        const response = await axios.get(`https://api.themoviedb.org/3/search/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
         console.log(response.data.results);
     }
 
