@@ -15,6 +15,22 @@ class MediaList extends Component {
 
         return (
             <div>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    console.log('Hi')
+                }}>
+                    <label htmlFor="titleSearch">Title Search:</label>
+                    <input name="titleSearch" id="titleSearch" />
+                    <button>Submit</button>
+                </form>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    console.log('Hello')
+                }}>
+                    <label htmlFor="upcSearch">UPC Search:</label>
+                    <input name="upcSearch" id="upcSearch" />
+                    <button>Submit</button>
+                </form>
                 {linksToMedia}
             </div>
         );
