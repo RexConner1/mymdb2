@@ -7,8 +7,9 @@ class MediaList extends Component {
         super()
     }
 
-    searchForTitle = async(media="tv", title="Lost") => {
-        const response = await axios.get(`https://api.themoviedb.org/3/search/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
+    searchForTitle = async(title="Lost", media="movie", method="search") => {
+        // const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+        const response = await axios.get(`https://api.themoviedb.org/3/${method}/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
         console.log(response.data.results);
     }
 
@@ -42,7 +43,7 @@ class MediaList extends Component {
                 <form onSubmit={(e) => {
                     e.preventDefault()
                     if (e.target.titleSearch.value) {
-                        this.searchForTitle(this.props.movies ? "movie" : "tv", e.target.titleSearch.value)
+                        this.searchForTitle(e.target.titleSearch.value, this.props.movies ? "movie" : "tv")
                     }
                 }}>
                     <label htmlFor="titleSearch">Title Search:</label>
