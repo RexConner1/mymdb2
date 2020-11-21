@@ -41,7 +41,9 @@ class MediaList extends Component {
             <div>
                 <form onSubmit={(e) => {
                     e.preventDefault()
-                    this.searchForTitle()
+                    if (e.target.titleSearch.value) {
+                        this.searchForTitle(this.props.movies ? "movie" : "tv", e.target.titleSearch.value)
+                    }
                 }}>
                     <label htmlFor="titleSearch">Title Search:</label>
                     <input name="titleSearch" id="titleSearch" />
