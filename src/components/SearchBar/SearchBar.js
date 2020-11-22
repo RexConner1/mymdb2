@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 function SearchBar(props) {
-    const searchForTitle = async(title="Lost", media="movie", method="search") => {
-        const response = await axios.get(`https://api.themoviedb.org/3/${method}/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
+    const searchForTitle = async(title="Lost", media="movie") => {
+        const response = await axios.get(`https://api.themoviedb.org/3/search/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
         console.log(response.data.results);
     }
 
