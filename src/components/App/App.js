@@ -88,8 +88,12 @@ class App extends Component {
           <Switch>
             <Route path="/movies" render={() => <MediaList movies={this.state.listOfMovies} /> }/>
             <Route path="/shows" render={() => <MediaList shows={this.state.listOfTvShows} /> }/>
+
             <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
             <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
+
+            <Route path="/mymovies" render={(routerProps) => <MediaList {...routerProps} movies={this.state.listOfMovies} /> }/>
+            <Route path="/myshows" render={(routerProps) => <MediaList {...routerProps} shows={this.state.listOfTvShows} /> }/>
           </Switch>
         </main>
       </div>

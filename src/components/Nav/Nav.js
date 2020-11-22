@@ -13,6 +13,7 @@ class Nav extends Component {
                     <ul className="nav">
                         <Link to="/movies" className="navbar-brand">Movies</Link>
                         <Link to="/shows" className="navbar-brand">TV Shows</Link>
+                        <Link to="/mymovies" className="navbar-brand">My List</Link>
                     </ul>
                 </div>
             </nav>
