@@ -6,6 +6,7 @@ import './App.css';
 import Nav from '../Nav/Nav'
 import MediaList from '../MediaList/MediaList'
 import DetailPage from '../DetailPage/DetailPage'
+import MyList from '../MyList/MyList'
 
 class App extends Component {
   constructor() {
@@ -52,19 +53,19 @@ class App extends Component {
       ],
       popularMovies: [],
       popularTvShows: [],
+      // showMyList: false,
     }
   }
 
   componentDidMount = async() => {
     await this.getPopularMovies()
     await this.getPopularTvShows()
-    console.log(this.state.popularMovies)
-    console.log(this.state.popularTvShows)
+    // console.log(this.state.popularMovies)
+    // console.log(this.state.popularTvShows)
   }
 
   getPopularMovies = async() => {
     const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
-    // console.log(response.data.results)
     this.setState({
       popularMovies: response.data.results
     })
@@ -72,13 +73,39 @@ class App extends Component {
 
   getPopularTvShows = async() => {
     const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
-    // console.log(response.data.results)
     this.setState({
       popularTvShows: response.data.results
     })
   }
 
+  addToMyMovies = (movie) => {
+    const tempList = this.state.listOfMovies
+    tempList.push(movie)
+
+    this.setState({
+      listOfMovies: tempList
+    })
+  }
+
+  addToMyShows = (show) => {
+    const tempList = this.state.listOfTvShows
+    tempList.push(show)
+
+    this.setState({
+      listOfTvShows: tempList
+    })
+  }
+
+  // lookAtMyList = (bool) => {
+  //   this.setState({
+  //     showMyList: bool
+  //   })
+  // }
+
   render() {
+    // const movies = this.state.showMyList ? this.state.listOfMovies : this.state.popularMovies
+    // const shows = this.state.showMyList ? this.state.listOfTvShows : this.state.popularTvShows
+
     return (
       <div className="App">
         <header>
@@ -86,14 +113,17 @@ class App extends Component {
         </header>
         <main>
           <Switch>
-            <Route path="/movies" render={() => <MediaList movies={this.state.popularMovies} /> }/>
-            <Route path="/shows" render={() => <MediaList shows={this.state.popularTvShows} /> }/>
+            <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} movies={this.state.popularMovies} /> }/>
+            <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} shows={this.state.popularTvShows} /> }/>
 
-            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
-            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
+            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.popularMovies} /> }/>
+            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.popularTvShows} /> }/>
 
-            <Route path="/mymovies" render={(routerProps) => <MediaList {...routerProps} movies={this.state.listOfMovies} /> }/>
-            <Route path="/myshows" render={(routerProps) => <MediaList {...routerProps} shows={this.state.listOfTvShows} /> }/>
+            <Route path="/mymovies" render={(routerProps) => <MyList {...routerProps} movies={this.state.listOfMovies} /> }/>
+            <Route path="/myshows" render={(routerProps) => <MyList {...routerProps} shows={this.state.listOfTvShows} /> }/>
+
+            <Route path="/mymovie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
+            <Route path="/myshow/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
           </Switch>
         </main>
       </div>

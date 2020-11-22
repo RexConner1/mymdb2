@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import SearchBar from '../SearchBar/SearchBar';
 
-class MediaList extends Component {
+class MyList extends Component {
     assignMediaVariables = () => {
         let media = []
         let linkWords = []
@@ -22,7 +22,7 @@ class MediaList extends Component {
     createLinksToMedia = (media, destination, title) => {
         return media.map(item => (
             <div key={item.id}>
-                <p><Link to={`/${destination}/` + item.id}>{item[title]}</Link></p>
+                <p><Link to={`my${destination}/` + item.id}>{item[title]}</Link></p>
             </div>
         ))
     } 
@@ -44,4 +44,4 @@ class MediaList extends Component {
     }
 }
 
-export default MediaList;
+export default MyList;
