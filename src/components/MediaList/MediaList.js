@@ -8,7 +8,6 @@ class MediaList extends Component {
     }
 
     searchForTitle = async(title="Lost", media="movie", method="search") => {
-        // const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
         const response = await axios.get(`https://api.themoviedb.org/3/${method}/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
         console.log(response.data.results);
     }

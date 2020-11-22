@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
+import axios from 'axios';
 
 import './App.css';
 import Nav from '../Nav/Nav'
@@ -48,8 +49,33 @@ class App extends Component {
           overview: "Stripped of everything, the survivors of a horrific plane crash  must work together to stay alive. But the island holds many secrets.",
           vote_average: 7.9,
         },    
-      ]
+      ],
+      popularMovies: [],
+      popularTvShows: [],
     }
+  }
+
+  componentDidMount = async() => {
+    await this.getPopularMovies()
+    await this.getPopularTvShows()
+    console.log(this.state.popularMovies)
+    console.log(this.state.popularTvShows)
+  }
+
+  getPopularMovies = async() => {
+    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+    // console.log(response.data.results)
+    this.setState({
+      popularMovies: response.data.results
+    })
+  }
+
+  getPopularTvShows = async() => {
+    const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+    // console.log(response.data.results)
+    this.setState({
+      popularTvShows: response.data.results
+    })
   }
 
   render() {
