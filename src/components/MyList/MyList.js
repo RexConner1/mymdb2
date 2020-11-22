@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import SearchBar from '../SearchBar/SearchBar';
 
 class MyList extends Component {
     assignMediaVariables = () => {
@@ -36,8 +35,6 @@ class MyList extends Component {
 
         return (
             <div>
-                <SearchBar name="titleSearch" title="Title Search:" value={apiValue} />
-                <SearchBar name="upcSearch" title="UPC Search:" value={apiValue} />
                 {linksToMedia}
             </div>
         );
