@@ -3,8 +3,17 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 
 class MediaList extends Component {
-    constructor() {
-        super()
+    assignMediaVariables = () => {
+        let media = []
+        let linkWords = []
+        if (this.props.movies) {
+            media = this.props.movies
+            linkWords = ['movie', 'title']
+        } else {
+            media = this.props.shows
+            linkWords = ['movie', 'name']
+        }
+        return [media, linkWords]
     }
 
     searchForTitle = async(title="Lost", media="movie", method="search") => {
@@ -27,9 +36,11 @@ class MediaList extends Component {
     }
 
     render() {
-        const media = this.props.movies ? this.props.movies : this.props.shows
+        const variables = this.assignMediaVariables()
+        const media = variables[0]
+        const linkWords = variables[1]
+
         const linksToMedia = media.map(item => {
-            const linkWords = this.props.movies ? ['movie', 'title'] : ['show', 'name'];
             return (
                 <div key={item.id}>
                     <p><Link to={`/${linkWords[0]}/` + item.id}>{item[linkWords[1]]}</Link></p>
@@ -42,7 +53,7 @@ class MediaList extends Component {
                 <form onSubmit={(e) => {
                     e.preventDefault()
                     if (e.target.titleSearch.value) {
-                        this.searchForTitle(e.target.titleSearch.value, this.props.movies ? "movie" : "tv")
+                        this.searchForTitle(e.target.titleSearch.value, linkWords[0])
                     }
                 }}>
                     <label htmlFor="titleSearch">Title Search:</label>
