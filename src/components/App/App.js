@@ -111,7 +111,7 @@ class App extends Component {
   addToMyShows = (show) => {
     const tempList = this.state.listOfTvShows
     tempList.push(show)
-
+    console.log(tempList)
     this.setState({
       listOfTvShows: tempList
     })
@@ -129,7 +129,7 @@ class App extends Component {
             <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} /> }/>
 
             <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} addMovieListClick={this.addToMyMovies}/> }/>
-            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} /> }/>
+            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} addShowListClick={this.addToMyShows}/> }/>
 
             <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} /> }/>
             <Route path="/owned/myshows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} /> }/>
