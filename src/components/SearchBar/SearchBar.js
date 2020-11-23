@@ -8,18 +8,50 @@ function SearchBar(props) {
         props.properties.setSearchResults(response)
     }
 
-    const searchForUPC = async(upcNumber='786936858136') => {
+    const searchForUPC = async(upcNumber) => {
         const response = await axios({
             method: 'get',
-            url: 'https://cors-anywhere.herokuapp.com/https://api.upcdatabase.org/product/786936858136?apikey=2F1653F46E6223E30135DB3D80B8C22D',
+            url: `https://cors-anywhere.herokuapp.com/https://api.upcdatabase.org/product/${upcNumber}?apikey=2F1653F46E6223E30135DB3D80B8C22D`,
             headers: { 
                 "Access-Control-Allow-Origin": "*",
                 'x-apikey': '2F1653F46E6223E30135DB3D80B8C22D',
-                // 'Cookie': 'upcdatabaseorg=lkgb06nvf39jequ927ki6nkf9j',
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             }
         })
         console.log(response.data)
+        const title = refineTitleFromUPCResponseData(response.data)
+        searchForTitle(title)
+    }
+
+    const refineTitleFromUPCResponseData = (response) => {
+        let title
+        if (response.title || response.descrption) {
+            title = response.title ? response.title : response.description
+            title = title.split(" ")
+
+            let newTitle = ""
+            let turnOffSelect = false
+            title.forEach(word => {
+                let ignore = false
+                if (word.toUpperCase() === word || /Blu-ray|Digital|DVD/.test(word)) {
+                    ignore = true
+                } else if (word.includes('(')) {
+                    turnOffSelect = true
+                } else if (word.includes(')')) {
+                    ignore = true
+                    turnOffSelect = false
+                } 
+                
+                if (!ignore && !turnOffSelect) {
+                   newTitle = newTitle.concat(newTitle ? " " : "", word)
+                }
+            })
+
+            title = newTitle
+        } else {
+            title = false
+        }
+        return title
     }
 
     return (
