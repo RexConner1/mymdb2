@@ -12,13 +12,15 @@ class App extends Component {
     super();
 
     this.movieProps = {
-      linkWord: 'movie',
+      linkWord: '/movie',
+      haveWord: '/owned',
       apiWord: 'movie',
       titleWord: 'title',
       setSearchResults: this.setMovieSearchResults,
     };
     this.showProps = {
-      linkWord: 'show',
+      linkWord: '/show',
+      haveWord: '/owned',
       apiWord: 'tv',
       titleWord: 'name',
       setSearchResults: this.setShowSearchResults,
@@ -128,11 +130,11 @@ class App extends Component {
             <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} /> }/>
             <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} /> }/>
 
-            <Route path="/mymovies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} /> }/>
-            <Route path="/myshows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} /> }/>
+            <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} /> }/>
+            <Route path="/owned/myshows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} /> }/>
 
-            <Route path="/mymovie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
-            <Route path="/myshow/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
+            <Route path="/owned/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
+            <Route path="/owned/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
           </Switch>
         </main>
       </div>

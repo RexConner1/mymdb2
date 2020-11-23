@@ -4,16 +4,18 @@ import SearchBar from '../SearchBar/SearchBar';
 
 class MediaList extends Component {
     render() {
+        const properties = this.props.properties
+        const linkAddress = this.props.location.pathname.includes(properties.haveWord) ? properties.haveWord + properties.linkWord : properties.linkWord
         const linksToMedia = this.props.media.map(item => (
             <div key={item.id}>
-                <p><Link to={`/${this.props.properties.linkWord}/` + item.id}>{item[this.props.properties.titleWord]}</Link></p>
+                <p><Link to={`${linkAddress}/` + item.id}>{item[properties.titleWord]}</Link></p>
             </div>
         ))
 
         return (
             <div>
-                <SearchBar name="titleSearch" title="Title Search:" properties={this.props.properties} />
-                <SearchBar name="upcSearch" title="UPC Search:" properties={this.props.properties} />
+                <SearchBar name="titleSearch" title="Title Search:" properties={properties} />
+                <SearchBar name="upcSearch" title="UPC Search:" properties={properties} />
                 {linksToMedia}
             </div>
         );
