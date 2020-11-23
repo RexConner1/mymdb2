@@ -120,6 +120,23 @@ class App extends Component {
       listOfTvShows: tempList
     })
   }
+  addToShowWishList =(show) => {
+    const tempList =this.state.wishListTvShows
+    tempList.push(show)
+    console.log(tempList)
+    this.setState({
+      wishListTvShows: tempList
+    })
+  }
+  addToMovieWishList =(movie) => {
+    const tempList = this.state.wishListMovies
+    tempList.push(movie)
+    console.log(tempList)
+    this.setState({
+      wishListMovies: tempList
+    })
+  }
+
 
   render() {
     return (
@@ -132,8 +149,8 @@ class App extends Component {
             <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} otherProps={this.movieProps} /> }/>
 
-            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} addMovieListClick={this.addToMyMovies}/> }/>
-            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} addShowListClick={this.addToMyShows}/> }/>
+            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} addMovieWishList={this.addToMovieWishList} addMovieListClick={this.addToMyMovies}/> }/>
+            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} addShowWishList={this.addToShowWishList} addShowListClick={this.addToMyShows}/> }/>
 
             <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/owned/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} otherProps={this.movieProps} /> }/>
