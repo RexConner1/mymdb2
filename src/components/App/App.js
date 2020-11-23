@@ -149,8 +149,8 @@ class App extends Component {
             <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} otherProps={this.movieProps} /> }/>
 
-            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} addMovieWishList={this.addToMovieWishList} addMovieListClick={this.addToMyMovies}/> }/>
-            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} addShowWishList={this.addToShowWishList} addShowListClick={this.addToMyShows}/> }/>
+            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} addMovieWishListClick={this.addToMovieWishList} addMovieListClick={this.addToMyMovies}/> }/>
+            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} addShowWishListClick={this.addToShowWishList} addShowListClick={this.addToMyShows}/> }/>
 
             <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/owned/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} otherProps={this.movieProps} /> }/>

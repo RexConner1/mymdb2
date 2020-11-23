@@ -26,7 +26,7 @@ class DetailPage extends Component {
                 <h2>Summary</h2>
                 <p>{this.props.movies ? media.overview : media.overview}</p> 
                 <button onClick = {(e) => this.props.movies ? this.props.addMovieListClick(media) : this.props.addShowListClick(media)}>Add To My Collection</button><br/>
-                <button>Wish List</button>
+                <button onClick = {(e) => this.props.movies ? this.props.addMovieWishListClick(media) : this.props.addShowWishListClick(media)}>Add to Wish List</button>
                 </div>
             </div>
         </div>
