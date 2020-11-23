@@ -6,11 +6,24 @@ import './App.css';
 import Nav from '../Nav/Nav'
 import MediaList from '../MediaList/MediaList'
 import DetailPage from '../DetailPage/DetailPage'
-import MyList from '../MyList/MyList'
 
 class App extends Component {
   constructor() {
     super();
+
+    this.movieProps = {
+      linkWord: 'movie',
+      apiWord: 'movie',
+      titleWord: 'title',
+      setSearchResults: this.setMovieSearchResults,
+    };
+    this.showProps = {
+      linkWord: 'show',
+      apiWord: 'tv',
+      titleWord: 'name',
+      setSearchResults: this.setShowSearchResults,
+    };
+
     this.state = {
       listOfMovies: [
         {
@@ -51,30 +64,35 @@ class App extends Component {
           vote_average: 7.9,
         },    
       ],
-      popularMovies: [],
-      popularTvShows: [],
-      // showMyList: false,
+      movieSearchResults: [],
+      showSearchResults: [],
     }
   }
 
   componentDidMount = async() => {
-    await this.getPopularMovies()
-    await this.getPopularTvShows()
+    await this.setMovieSearchResults()
+    await this.setShowSearchResults()
     // console.log(this.state.popularMovies)
     // console.log(this.state.popularTvShows)
   }
 
-  getPopularMovies = async() => {
-    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+  setMovieSearchResults = async(response) => {
+    if (!response) {
+      response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+    }
+    
     this.setState({
-      popularMovies: response.data.results
+      movieSearchResults: response.data.results
     })
   }
 
-  getPopularTvShows = async() => {
-    const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+  setShowSearchResults = async(response) => {
+    if (!response) {
+      response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+    }
+
     this.setState({
-      popularTvShows: response.data.results
+      showSearchResults: response.data.results
     })
   }
 
@@ -96,16 +114,7 @@ class App extends Component {
     })
   }
 
-  // lookAtMyList = (bool) => {
-  //   this.setState({
-  //     showMyList: bool
-  //   })
-  // }
-
   render() {
-    // const movies = this.state.showMyList ? this.state.listOfMovies : this.state.popularMovies
-    // const shows = this.state.showMyList ? this.state.listOfTvShows : this.state.popularTvShows
-
     return (
       <div className="App">
         <header>
@@ -113,14 +122,14 @@ class App extends Component {
         </header>
         <main>
           <Switch>
-            <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} movies={this.state.popularMovies} /> }/>
-            <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} shows={this.state.popularTvShows} /> }/>
+            <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} /> }/>
+            <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} /> }/>
 
-            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.popularMovies} /> }/>
-            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.popularTvShows} /> }/>
+            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} /> }/>
+            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} /> }/>
 
-            <Route path="/mymovies" render={(routerProps) => <MyList {...routerProps} movies={this.state.listOfMovies} /> }/>
-            <Route path="/myshows" render={(routerProps) => <MyList {...routerProps} shows={this.state.listOfTvShows} /> }/>
+            <Route path="/mymovies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} /> }/>
+            <Route path="/myshows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} /> }/>
 
             <Route path="/mymovie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
             <Route path="/myshow/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>

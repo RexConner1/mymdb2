@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 
 function SearchBar(props) {
-    const searchForTitle = async(title="Lost", media="movie") => {
-        const response = await axios.get(`https://api.themoviedb.org/3/search/${media}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
-        console.log(response.data.results);
+    const searchForTitle = async(title) => {
+        const response = await axios.get(`https://api.themoviedb.org/3/search/${props.properties.apiWord}?api_key=66b22cb2598318b06f69e25cb751c2ad&query=${title}`)
+        console.log(response.data.results)
+        props.properties.setSearchResults(response)
     }
 
     const searchForUPC = async(upcNumber='786936858136') => {
@@ -18,7 +19,7 @@ function SearchBar(props) {
                 'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
             }
         })
-        console.log(response.data);
+        console.log(response.data)
     }
 
     return (
@@ -27,7 +28,7 @@ function SearchBar(props) {
                 e.preventDefault()
                 if (e.target[props.name].value) {
                     const functionToRun = props.name === "titleSearch" ? searchForTitle : searchForUPC
-                    functionToRun(e.target[props.name].value, props.value)
+                    functionToRun(e.target[props.name].value)
                 }
             }}>
                 <label htmlFor={props.name}>{props.title}</label>
