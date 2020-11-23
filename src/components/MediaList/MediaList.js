@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import SearchBar from '../SearchBar/SearchBar';
 
 class MediaList extends Component {
     render() {
-        const media = this.props.movies ? this.props.movies : this.props.shows
-        const linksToMedia = media.map(item => {
-            const linkWords = this.props.movies ? ['movie', 'title'] : ['show', 'name'];
-            return (
-                <div key={item.id}>
-                    <p><Link to={`/${linkWords[0]}/` + item.id}>{item[linkWords[1]]}</Link></p>
-                </div>
-            )
-        })
+        const properties = this.props.properties
+        const linkAddress = this.props.location.pathname.includes(properties.haveWord) ? properties.haveWord + properties.linkWord : properties.linkWord
+        const linksToMedia = this.props.media.map(item => (
+            <div key={item.id}>
+                <p><Link to={`${linkAddress}/` + item.id}>{item[properties.titleWord]}</Link></p>
+            </div>
+        ))
 
         return (
             <div>
+                <SearchBar name="titleSearch" title="Title Search:" properties={properties} />
+                <SearchBar name="upcSearch" title="UPC Search:" properties={properties} />
                 {linksToMedia}
             </div>
         );

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
+import axios from 'axios';
 
 import './App.css';
 import Nav from '../Nav/Nav'
@@ -9,6 +10,22 @@ import DetailPage from '../DetailPage/DetailPage'
 class App extends Component {
   constructor() {
     super();
+
+    this.movieProps = {
+      linkWord: '/movie',
+      haveWord: '/owned',
+      apiWord: 'movie',
+      titleWord: 'title',
+      setSearchResults: this.setMovieSearchResults,
+    };
+    this.showProps = {
+      linkWord: '/show',
+      haveWord: '/owned',
+      apiWord: 'tv',
+      titleWord: 'name',
+      setSearchResults: this.setShowSearchResults,
+    };
+
     this.state = {
       listOfMovies: [
         {
@@ -48,8 +65,55 @@ class App extends Component {
           overview: "Stripped of everything, the survivors of a horrific plane crash  must work together to stay alive. But the island holds many secrets.",
           vote_average: 7.9,
         },    
-      ]
+      ],
+      movieSearchResults: [],
+      showSearchResults: [],
     }
+  }
+
+  componentDidMount = async() => {
+    await this.setMovieSearchResults()
+    await this.setShowSearchResults()
+    // console.log(this.state.popularMovies)
+    // console.log(this.state.popularTvShows)
+  }
+
+  setMovieSearchResults = async(response) => {
+    if (!response) {
+      response = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+    }
+    
+    this.setState({
+      movieSearchResults: response.data.results
+    })
+  }
+
+  setShowSearchResults = async(response) => {
+    if (!response) {
+      response = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=66b22cb2598318b06f69e25cb751c2ad&sort_by=popularity.desc`)
+    }
+
+    this.setState({
+      showSearchResults: response.data.results
+    })
+  }
+
+  addToMyMovies = (movie) => {
+    const tempList = this.state.listOfMovies
+    tempList.push(movie)
+
+    this.setState({
+      listOfMovies: tempList
+    })
+  }
+
+  addToMyShows = (show) => {
+    const tempList = this.state.listOfTvShows
+    tempList.push(show)
+
+    this.setState({
+      listOfTvShows: tempList
+    })
   }
 
   render() {
@@ -60,10 +124,17 @@ class App extends Component {
         </header>
         <main>
           <Switch>
-            <Route path="/movies" render={() => <MediaList movies={this.state.listOfMovies} /> }/>
-            <Route path="/shows" render={() => <MediaList shows={this.state.listOfTvShows} /> }/>
-            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
-            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
+            <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} /> }/>
+            <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} /> }/>
+
+            <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} /> }/>
+            <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} /> }/>
+
+            <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} /> }/>
+            <Route path="/owned/myshows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} /> }/>
+
+            <Route path="/owned/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
+            <Route path="/owned/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
           </Switch>
         </main>
       </div>
