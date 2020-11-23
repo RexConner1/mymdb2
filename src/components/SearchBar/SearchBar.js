@@ -56,7 +56,14 @@ function SearchBar(props) {
 
     return (
         <div>
-            <form onSubmit={(e) => {
+            <form
+            onChange={(e) => {
+                e.preventDefault()
+                if (props.name === "titleSearch" && !e.target.value) {
+                    props.properties.setSearchResults()
+                }
+            }}
+            onSubmit={(e) => {
                 e.preventDefault()
                 if (e.target[props.name].value) {
                     const functionToRun = props.name === "titleSearch" ? searchForTitle : searchForUPC
