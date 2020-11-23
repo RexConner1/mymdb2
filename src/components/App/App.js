@@ -15,6 +15,7 @@ class App extends Component {
       displayWord: 'Movies',
       linkWord: '/movie',
       haveWord: '/owned',
+      wantWord: '/wish',
       apiWord: 'movie',
       titleWord: 'title',
       setSearchResults: this.setMovieSearchResults,
@@ -23,6 +24,7 @@ class App extends Component {
       displayWord: 'TV Shows',
       linkWord: '/show',
       haveWord: '/owned',
+      wantWord: '/wish',
       apiWord: 'tv',
       titleWord: 'name',
       setSearchResults: this.setShowSearchResults,
@@ -138,7 +140,7 @@ class App extends Component {
             <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/owned/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} otherProps={this.movieProps} /> }/>
             <Route path="/wish/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListMovies} properties={this.movieProps} otherProps={this.showProps} /> }/>
-            <Route path="/wish/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListTvShows} properties={this.movieProps} otherProps={this.showProps} /> }/>
+            <Route path="/wish/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListTvShows} properties={this.showProps} otherProps={this.movieProps} /> }/>
 
             <Route path="/owned/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
             <Route path="/owned/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
