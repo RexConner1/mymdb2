@@ -20,11 +20,10 @@ class DetailPage extends Component {
                 <img src={posterURL} alt="Poster Image"/>
                 <div className="descriptions">
                 <h1>{this.props.movies ? media.title : media.name}</h1>
-                <h7> Release Date : {this.props.movies ? media.release_date : media.first_air_date}</h7>
+                <h6> Release Date : {this.props.movies ? media.release_date : media.first_air_date}</h6>
                 <h2>Summary</h2>
                 <p>{this.props.movies ? media.overview : media.overview}</p> 
                 </div>
-            {/* <p>{this.props.movies ? media.poster_path : media.poster_path}</p> */}
             </div>
         </div>
 
