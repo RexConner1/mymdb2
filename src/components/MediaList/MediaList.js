@@ -5,13 +5,21 @@ import SearchBar from '../SearchBar/SearchBar';
 class MediaList extends Component {
     render() {
         const properties = this.props.properties
+        const path = this.props.location.pathname
         
         let detail
-        if (this.props.location.pathname.includes(properties.haveWord)) {
+        if (path.includes(properties.haveWord)) {
             detail = (
                 <div>
                     <h1>My Collection</h1>
                     <h4><em><Link to={properties.haveWord + this.props.otherProps.linkWord + "s"}>(Go to {this.props.otherProps.displayWord})</Link></em></h4>
+                </div>
+            )
+        } else if (path.includes(properties.wantWord)) {
+            detail = (
+                <div>
+                    <h1>My Wish List</h1>
+                    <h4><em><Link to={properties.wantWord + this.props.otherProps.linkWord + "s"}>(Go to {this.props.otherProps.displayWord})</Link></em></h4>
                 </div>
             )
         } else {
