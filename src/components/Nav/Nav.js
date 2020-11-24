@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 
 class Navigation extends Component {
     render() {
-        const movies = "Movies"
-        const shows = "TV Shows"
+        const media = this.props.media
+        const properties = this.props.properties
 
         const updateMedia = (e) => {
             e.preventDefault()
             this.props.setMedia(e.target.innerHTML)
+            this.props.setMedia(e.target.innerHTML === properties.movie.displayWord ? properties.movie : properties.show)
         }
 
         return (
@@ -18,16 +18,16 @@ class Navigation extends Component {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <NavDropdown title={this.props.media} id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/movies" onClick={(e) => updateMedia(e)}>{movies}</NavDropdown.Item>
+                        <NavDropdown title={media.displayWord} id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/movies" onClick={(e) => updateMedia(e)}>{properties.movie.displayWord}</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/shows" onClick={(e) => updateMedia(e)}>{shows}</NavDropdown.Item>
+                            <NavDropdown.Item href="/shows" onClick={(e) => updateMedia(e)}>{properties.show.displayWord}</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/movies">Search</Nav.Link>
-                        <Nav.Link href="/owned/movies">My Collection</Nav.Link>
-                        <Nav.Link eventKey={2} href="/wish/movies">Wish List</Nav.Link>
+                        <Nav.Link href={media.searchWord}>Search</Nav.Link>
+                        <Nav.Link href={media.haveWord + media.searchWord}>My Collection</Nav.Link>
+                        <Nav.Link eventKey={2} href={media.wantWord + media.searchWord}>Wish List</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

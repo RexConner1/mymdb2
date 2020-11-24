@@ -29,9 +29,30 @@ class App extends Component {
       titleWord: 'name',
       setSearchResults: this.setShowSearchResults,
     };
-
+    this.mediaProps = {
+      movie: {
+        displayWord: 'Movies',
+        searchWord: '/movies',
+        linkWord: '/movie',
+        haveWord: '/owned',
+        wantWord: '/wish',
+        apiWord: 'movie',
+        titleWord: 'title',
+        setSearchResults: this.setMovieSearchResults,
+      },
+      show: {
+        displayWord: 'TV Shows',
+        searchWord: '/shows',
+        linkWord: '/show',
+        haveWord: '/owned',
+        wantWord: '/wish',
+        apiWord: 'tv',
+        titleWord: 'name',
+        setSearchResults: this.setShowSearchResults,
+      }
+    }
     this.state = {
-      mediaSelection: "Movies",
+      mediaSelection: this.mediaProps.movie,
       listOfMovies: [
         {
           id: 24428,
@@ -127,7 +148,7 @@ class App extends Component {
       listOfTvShows: tempList
     })
   }
-  
+
   addToShowWishList =(show) => {
     const tempList =this.state.wishListTvShows
     tempList.push(show)
@@ -150,7 +171,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Navigation media={this.state.mediaSelection} setMedia={this.setMediaSelection} />
+          <Navigation media={this.state.mediaSelection} setMedia={this.setMediaSelection} properties={this.mediaProps} />
         </header>
         <main>
           <Switch>
