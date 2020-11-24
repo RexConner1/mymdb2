@@ -149,7 +149,7 @@ class App extends Component {
         </header>
         <main>
           <Switch>
-            <Route path="/" exact render={() => <Home /> }/>
+            <Route path="/" exact render={() => <Home media={this.state.movieSearchResults}/> }/>
             <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} otherProps={this.movieProps} /> }/>
 
