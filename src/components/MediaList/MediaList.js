@@ -29,7 +29,7 @@ class MediaList extends Component {
                     <div className="inputs">
                         <SearchBar className="input title" name="titleSearch" title="Title Search:" properties={properties} />
                         <form>
-                            <button className="clear" onClick={properties.setSearchResults}>Clear</button>
+                            <button className="clear" onClick={properties.setSearchResults}>Clear Search</button>
                         </form>
                         <SearchBar className="input upc" name="upcSearch" title="UPC Search:" properties={properties} />
                     </div>
