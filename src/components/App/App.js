@@ -31,6 +31,7 @@ class App extends Component {
     };
 
     this.state = {
+      mediaSelection: "Movies",
       listOfMovies: [
         {
           id: 24428,
@@ -81,8 +82,12 @@ class App extends Component {
   componentDidMount = async() => {
     await this.setMovieSearchResults()
     await this.setShowSearchResults()
-    // console.log(this.state.popularMovies)
-    // console.log(this.state.popularTvShows)
+  }
+
+  setMediaSelection = (media) => {
+    this.setState ({
+      mediaSelection: media
+    })
   }
 
   setMovieSearchResults = async(response) => {
@@ -144,7 +149,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Navigation />
+          <Navigation media={this.state.mediaSelection} setMedia={this.setMediaSelection} />
         </header>
         <main>
           <Switch>

@@ -4,34 +4,24 @@ import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 
 class Navigation extends Component {
     render() {
-        return (
-            // <nav className="navbar navbar-inverse">
-            //     <div className="container-fluid">
-            //         <div className="navbar-header">
-            //             <Link to="/" className="navbar-brand">myMDB</Link>
-            //         </div>
-            //         <ul className="nav">
-            //             <Link to="/movies" className="navbar-brand">Movies</Link>
-            //             <Link to="/shows" className="navbar-brand">TV Shows</Link>
-            //             <Link to="/owned/movies" className="navbar-brand">My Collection</Link>
-            //             <Link to="/wish/movies" className="navbar-brand">Wish List</Link>
-            //         </ul>
-            //     </div>
-            // </nav>
+        const movies = "Movies"
+        const shows = "TV Shows"
 
+        const updateMedia = (e) => {
+            e.preventDefault()
+            this.props.setMedia(e.target.innerHTML)
+        }
+
+        return (
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Navbar.Brand href="/">myMDB</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <NavDropdown title="Movies" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/movies" onClick={(e) => {
-                                e.preventDefault()
-                                console.log(e.target)}}>
-                                Movies
-                            </NavDropdown.Item>
+                        <NavDropdown title={this.props.media} id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="/movies" onClick={(e) => updateMedia(e)}>{movies}</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/shows">TV Shows</NavDropdown.Item>
+                            <NavDropdown.Item href="/shows" onClick={(e) => updateMedia(e)}>{shows}</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>
