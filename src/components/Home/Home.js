@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import Carousel from 'react-bootstrap/Carousel'
+import './Home.css'
 
 class Home extends Component {
     render() {
         const carouselTiming = 5000;
-        console.log(this.props.media[0].poster_path)
+        
         let poster1 = this.props.media[0].poster_path;
         let poster2 = this.props.media[1].poster_path;
         let poster3 = this.props.media[2].poster_path
         let posterURL = "https://image.tmdb.org/t/p/w780/" ; 
 
         return (
-            <div>
+            <div className="Carousel">
                 <Carousel>
                     <Carousel.Item interval={carouselTiming}>
                         <img
