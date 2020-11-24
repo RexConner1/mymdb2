@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-// import { Navbar } from 'react-bootstrap';
+import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 
-class Nav extends Component {
+class Navigation extends Component {
     render() {
-        return (
-            <nav className="navbar navbar-inverse">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                        <Link to="/" className="navbar-brand">myMDB</Link>
-                    </div>
-                    <ul className="nav">
-                        <Link to="/movies" className="navbar-brand">Movies</Link>
-                        <Link to="/shows" className="navbar-brand">TV Shows</Link>
-                        <Link to="/owned/movies" className="navbar-brand">My Collection</Link>
-                        <Link to="/wish/movies" className="navbar-brand">Wish List</Link>
-                    </ul>
-                </div>
-            </nav>
+        const media = this.props.media
+        const properties = this.props.properties
 
-            // <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            //     <Navbar.Brand href="/">myMDB</Navbar.Brand>
-            //     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            //     <Navbar.Collapse id="responsive-navbar-nav">
-            //         <Nav>
-            //             <Nav.Link href="/movies">Movies</Nav.Link>
-            //             <Nav.Link href="/shows">TV Shows</Nav.Link>
-            //         </Nav>
-            //     </Navbar.Collapse>
-            // </Navbar>
+        const updateMedia = (e) => {
+            e.preventDefault()
+            this.props.setMedia(e.target.innerHTML === properties.movie.displayWord ? properties.movie : properties.show)
+            // this.props.history.replace('/path-to-redirect');
+        }
+
+        return (
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Navbar.Brand href="/">myMDB</Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto">
+                        <NavDropdown title={media.displayWord} id="collasible-nav-dropdown">
+                            <NavDropdown.Item onClick={(e) => updateMedia(e)}>{properties.movie.displayWord}</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item onClick={(e) => updateMedia(e)}>{properties.show.displayWord}</NavDropdown.Item>
+                        </NavDropdown>
+                    </Nav>
+                    <Nav>
+                        <Nav.Link><Link to={media.searchWord}>Search</Link></Nav.Link>
+                        <Nav.Link><Link to={media.haveWord + media.searchWord}>My Collection</Link></Nav.Link>
+                        <Nav.Link><Link to={media.wantWord + media.searchWord}>Wish List</Link></Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
         );
     }
 }
 
-export default Nav;
+export default Navigation;

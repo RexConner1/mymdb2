@@ -3,34 +3,37 @@ import { Route, Switch } from "react-router-dom";
 import axios from 'axios';
 
 import './App.css';
-import Nav from '../Nav/Nav'
+import Navigation from '../Nav/Nav'
 import MediaList from '../MediaList/MediaList'
 import DetailPage from '../DetailPage/DetailPage'
 
 class App extends Component {
   constructor() {
     super();
-
-    this.movieProps = {
-      displayWord: 'Movies',
-      linkWord: '/movie',
-      haveWord: '/owned',
-      wantWord: '/wish',
-      apiWord: 'movie',
-      titleWord: 'title',
-      setSearchResults: this.setMovieSearchResults,
-    };
-    this.showProps = {
-      displayWord: 'TV Shows',
-      linkWord: '/show',
-      haveWord: '/owned',
-      wantWord: '/wish',
-      apiWord: 'tv',
-      titleWord: 'name',
-      setSearchResults: this.setShowSearchResults,
-    };
-
+    this.mediaProps = {
+      movie: {
+        displayWord: 'Movies',
+        searchWord: '/movies',
+        linkWord: '/movie',
+        haveWord: '/owned',
+        wantWord: '/wish',
+        apiWord: 'movie',
+        titleWord: 'title',
+        setSearchResults: this.setMovieSearchResults,
+      },
+      show: {
+        displayWord: 'TV Shows',
+        searchWord: '/shows',
+        linkWord: '/show',
+        haveWord: '/owned',
+        wantWord: '/wish',
+        apiWord: 'tv',
+        titleWord: 'name',
+        setSearchResults: this.setShowSearchResults,
+      }
+    }
     this.state = {
+      mediaSelection: this.mediaProps.movie,
       listOfMovies: [
         {
           id: 24428,
@@ -81,8 +84,12 @@ class App extends Component {
   componentDidMount = async() => {
     await this.setMovieSearchResults()
     await this.setShowSearchResults()
-    // console.log(this.state.popularMovies)
-    // console.log(this.state.popularTvShows)
+  }
+
+  setMediaSelection = (media) => {
+    this.setState ({
+      mediaSelection: media
+    })
   }
 
   setMovieSearchResults = async(response) => {
@@ -122,6 +129,7 @@ class App extends Component {
       listOfTvShows: tempList
     })
   }
+
   addToShowWishList =(show) => {
     const tempList =this.state.wishListTvShows
     tempList.push(show)
@@ -144,20 +152,20 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Nav />
+          <Navigation media={this.state.mediaSelection} setMedia={this.setMediaSelection} properties={this.mediaProps} />
         </header>
         <main>
           <Switch>
-            <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} otherProps={this.showProps} /> }/>
-            <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} otherProps={this.movieProps} /> }/>
+            <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.mediaProps.movie} /> }/>
+            <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.mediaProps.show} /> }/>
 
             <Route path="/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.movieSearchResults} addMovieWishListClick={this.addToMovieWishList} addMovieListClick={this.addToMyMovies}/> }/>
             <Route path="/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.showSearchResults} addShowWishListClick={this.addToShowWishList} addShowListClick={this.addToMyShows}/> }/>
 
-            <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.movieProps} otherProps={this.showProps} /> }/>
-            <Route path="/owned/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.showProps} otherProps={this.movieProps} /> }/>
-            <Route path="/wish/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListMovies} properties={this.movieProps} otherProps={this.showProps} /> }/>
-            <Route path="/wish/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListTvShows} properties={this.showProps} otherProps={this.movieProps} /> }/>
+            <Route path="/owned/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfMovies} properties={this.mediaProps.movie} /> }/>
+            <Route path="/owned/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.listOfTvShows} properties={this.mediaProps.show} /> }/>
+            <Route path="/wish/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListMovies} properties={this.mediaProps.movie} /> }/>
+            <Route path="/wish/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.wishListTvShows} properties={this.mediaProps.show} /> }/>
 
             <Route path="/owned/movie/:id" render={(routerProps) => <DetailPage {...routerProps} movies={this.state.listOfMovies} /> }/>
             <Route path="/owned/show/:id" render={(routerProps) => <DetailPage {...routerProps} shows={this.state.listOfTvShows} /> }/>
