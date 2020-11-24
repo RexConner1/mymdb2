@@ -25,6 +25,7 @@ class Navigation extends Component {
                         </NavDropdown>
                     </Nav>
                     <Nav>
+                        <Nav.Link href="/movies">Search</Nav.Link>
                         <Nav.Link href="/owned/movies">My Collection</Nav.Link>
                         <Nav.Link eventKey={2} href="/wish/movies">Wish List</Nav.Link>
                     </Nav>

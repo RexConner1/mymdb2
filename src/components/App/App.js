@@ -127,6 +127,7 @@ class App extends Component {
       listOfTvShows: tempList
     })
   }
+  
   addToShowWishList =(show) => {
     const tempList =this.state.wishListTvShows
     tempList.push(show)
