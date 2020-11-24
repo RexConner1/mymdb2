@@ -16,7 +16,7 @@ img {
 
 .inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 100px;
 }
 
@@ -25,7 +25,12 @@ img {
     grid-column: 1;
 }
 
-.upc {
+.clear {
     grid-row: 1;
     grid-column: 2;
+}
+
+.upc {
+    grid-row: 1;
+    grid-column: 3;
 }
