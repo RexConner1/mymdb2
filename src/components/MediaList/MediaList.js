@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+
 import SearchBar from '../SearchBar/SearchBar';
+import './MediaList.css'
 
 class MediaList extends Component {
     render() {
@@ -26,16 +28,21 @@ class MediaList extends Component {
             detail = (
                 <div>
                     <h1>Search</h1>
-                    <SearchBar name="titleSearch" title="Title Search:" properties={properties} />
-                    <SearchBar name="upcSearch" title="UPC Search:" properties={properties} />
+                    <div className="inputs">
+                        <SearchBar className="input title" name="titleSearch" title="Title Search:" properties={properties} />
+                        <SearchBar className="input upc" name="upcSearch" title="UPC Search:" properties={properties} />
+                    </div>
                 </div>
             )
         }
 
         const linkAddress = this.props.location.pathname.includes(properties.haveWord) ? properties.haveWord + properties.linkWord : properties.linkWord
         const linksToMedia = this.props.media.map(item => (
-            <div key={item.id}>
-                <p><Link to={`${linkAddress}/` + item.id}>{item[properties.titleWord]}</Link></p>
+            <div className="products" key={item.id}>
+                <div className="product">
+                    <img src={"https://image.tmdb.org/t/p/w780/" + item.poster_path} alt={item[properties.titleWord]} />
+                    <p><Link to={`${linkAddress}/` + item.id}>{item[properties.titleWord]}</Link></p>
+                </div>
             </div>
         ))
 
