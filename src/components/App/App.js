@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import axios from 'axios';
 
 import './App.css';
-import Home from '../Home/Home'
 import Nav from '../Nav/Nav'
 import MediaList from '../MediaList/MediaList'
 import DetailPage from '../DetailPage/DetailPage'
@@ -149,7 +148,6 @@ class App extends Component {
         </header>
         <main>
           <Switch>
-            <Route path="/" exact render={() => <Home media={this.state.movieSearchResults}/> }/>
             <Route path="/movies" render={(routerProps) => <MediaList {...routerProps} media={this.state.movieSearchResults} properties={this.movieProps} otherProps={this.showProps} /> }/>
             <Route path="/shows" render={(routerProps) => <MediaList {...routerProps} media={this.state.showSearchResults} properties={this.showProps} otherProps={this.movieProps} /> }/>
 
