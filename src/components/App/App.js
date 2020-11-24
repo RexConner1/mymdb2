@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import axios from 'axios';
 
 import './App.css';
-import Nav from '../Nav/Nav'
+import Navigation from '../Nav/Nav'
 import MediaList from '../MediaList/MediaList'
 import DetailPage from '../DetailPage/DetailPage'
 
@@ -144,7 +144,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <Nav />
+          <Navigation />
         </header>
         <main>
           <Switch>
