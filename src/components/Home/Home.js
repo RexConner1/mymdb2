@@ -5,43 +5,47 @@ import './Home.css'
 class Home extends Component {
     render() {
         const carouselTiming = 5000;
-        
-        let poster1 = this.props.media[0].poster_path;
-        let poster2 = this.props.media[1].poster_path;
-        let poster3 = this.props.media[2].poster_path
+        let  {media} = this.props
         let posterURL = "https://image.tmdb.org/t/p/w780/" ; 
+         
 
         return (
             <div className="Carousel">
                 <Carousel>
                     <Carousel.Item interval={carouselTiming}>
+                        {media.length> 0 &&
                         <img
                         className="d-block w-100"
-                        src={posterURL + poster1}
+                         src={posterURL + this.props.media[0].poster_path}
                         alt="First slide"
-                        />
+                        /> }
+
                         <Carousel.Caption>
                         <h3>Playing Now</h3>
                         <p>In Theaters Near You</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={carouselTiming}>
-                        <img
+
+                        {media.length> 0 && <img
                         className="d-block w-100"
-                        src={posterURL + poster2}
+                         src={posterURL + this.props.media[1].poster_path}
                         alt="Second slide"
-                        />
+                        />}
+
                         <Carousel.Caption>
                         <h3>Playing Now</h3>
                         <p>In Theaters Near You</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item interval={carouselTiming}>
-                        <img
+
+                        {media.length> 0 && <img
                         className="d-block w-100"
-                        src={posterURL + poster3}
+                         src={posterURL + this.props.media[2].poster_path}
                         alt="Third slide"
-                        />
+                        />}
+
                         <Carousel.Caption>
                         <h3>Playing Now</h3>
                         <p>In Theaters Near You</p>
