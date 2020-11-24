@@ -45,23 +45,6 @@ class App extends Component {
           overview: "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
           vote_average: 7.7,
         },
-        {
-          id: 2,
-          title: "Avengers: Age of Ultron",
-          poster_path: "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-          backdrop_path: "/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg",
-          releaseDate: "2012-04-25",
-          overview: "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
-          vote_average: 7.7,
-        },        {
-          id: 3,
-          title: "Avengers: Infinity War",
-          poster_path: "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
-          backdrop_path: "/kwUQFeFXOOpgloMgZaadhzkbTI4.jpg",
-          releaseDate: "2012-04-25",
-          overview: "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
-          vote_average: 7.7,
-        }
       ],
       listOfTvShows: [
         {
