@@ -9,7 +9,6 @@ class Navigation extends Component {
 
         const updateMedia = (e) => {
             e.preventDefault()
-            this.props.setMedia(e.target.innerHTML)
             this.props.setMedia(e.target.innerHTML === properties.movie.displayWord ? properties.movie : properties.show)
         }
 
