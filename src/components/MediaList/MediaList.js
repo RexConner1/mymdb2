@@ -14,14 +14,12 @@ class MediaList extends Component {
             detail = (
                 <div>
                     <h1>My Collection</h1>
-                    <h4><em><Link to={properties.haveWord + this.props.otherProps.linkWord + "s"}>(Go to {this.props.otherProps.displayWord})</Link></em></h4>
                 </div>
             )
         } else if (path.includes(properties.wantWord)) {
             detail = (
                 <div>
                     <h1>My Wish List</h1>
-                    <h4><em><Link to={properties.wantWord + this.props.otherProps.linkWord + "s"}>(Go to {this.props.otherProps.displayWord})</Link></em></h4>
                 </div>
             )
         } else {
