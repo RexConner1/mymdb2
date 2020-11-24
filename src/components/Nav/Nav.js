@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import { Navbar, NavDropdown, Nav } from 'react-bootstrap';
 
 class Navigation extends Component {
@@ -19,15 +20,15 @@ class Navigation extends Component {
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <NavDropdown title={media.displayWord} id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="/movies" onClick={(e) => updateMedia(e)}>{properties.movie.displayWord}</NavDropdown.Item>
+                            <NavDropdown.Item onClick={(e) => updateMedia(e)}>{properties.movie.displayWord}</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="/shows" onClick={(e) => updateMedia(e)}>{properties.show.displayWord}</NavDropdown.Item>
+                            <NavDropdown.Item onClick={(e) => updateMedia(e)}>{properties.show.displayWord}</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href={media.searchWord}>Search</Nav.Link>
-                        <Nav.Link href={media.haveWord + media.searchWord}>My Collection</Nav.Link>
-                        <Nav.Link eventKey={2} href={media.wantWord + media.searchWord}>Wish List</Nav.Link>
+                        <Nav.Link><Link to={media.searchWord}>Search</Link></Nav.Link>
+                        <Nav.Link><Link to={media.haveWord + media.searchWord}>My Collection</Link></Nav.Link>
+                        <Nav.Link><Link to={media.wantWord + media.searchWord}>Wish List</Link></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
