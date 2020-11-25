@@ -58,6 +58,13 @@ https://upcdatabase.org/
 * React <br>
 * Bootstrap <br>
 
+# Approach
+- We decided to use a combination of React Bootstrap features (ex. carousel, navbar) and standard CSS (ex. MediaPage, DetailPage)
+- With a NavBar media drop-down, we set the media state (Movie or TV Shows). This controls what renders when Search, My Collection, and Wish List is selected
+- The Title Search reports to the TMDB API, returning key features and details for said media.
+  - Details include title, year of release (movie), first airing (TV), media description, and more depending on the media
+- The UPC code API call returns has a title/description section. This section is then submitted to the same TMDB API for further title details
+
 # Installation 
 * None needed to use
 
