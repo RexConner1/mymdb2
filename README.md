@@ -54,4 +54,6 @@ https://upcdatabase.org/
 # Future Plans 
 * The integration of Express to add User sign up and login functionality to allow ability to store and view previous selections.
 * Add the functionality for homepage to show 3 pictures asynchronous and render top 10 movies. 
+* When user selects ne media, re-route them to the equivalent page for that media (ex. /owned/shows => /owned/movies)
+* Mobile functionality
 
