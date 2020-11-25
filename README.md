@@ -38,16 +38,16 @@ https://www.themoviedb.org/
 ## UPC 
 https://upcdatabase.org/
 # User Stories 
-As a User, I should be presented with popular movies at the homepage.
-As a User, I should be presented with navigational bar at any route chosen. 
-As a User, I should be able to return to homepage on any route. 
-As a User, I should be able to search for movies. 
-As a User, I should be able to search for TV Shows.
-As a User, I should be able to search by title or UPC Code. 
-As a User, I should be able to click and view items in detail (Title, Release Date, Summary).
-As a User, I should be able to add shows/movies to my collection.
-As a User, I should be able to add shows/movies to my wish list. 
-As a User, I should be able to view my collection and wishlist. 
+* As a User, I should be presented with popular movies at the homepage.
+* As a User, I should be presented with navigational bar at any route chosen. 
+* As a User, I should be able to return to homepage on any route. 
+* As a User, I should be able to search for movies. 
+* As a User, I should be able to search for TV Shows.
+* As a User, I should be able to search by title or UPC Code. 
+* As a User, I should be able to click and view items in detail (Title, Release Date, Summary).
+* As a User, I should be able to add shows/movies to my collection.
+* As a User, I should be able to add shows/movies to my wish list. 
+* As a User, I should be able to view my collection and wishlist. 
 
 # Technology Used 
 * CSS5 <br>
@@ -65,5 +65,6 @@ As a User, I should be able to view my collection and wishlist.
 * The integration of Express to add User sign up and login functionality to allow ability to store and view previous selections.
 * Add the functionality for homepage to show 3 pictures asynchronous and render top 10 movies. 
 * When user selects ne media, re-route them to the equivalent page for that media (ex. /owned/shows => /owned/movies)
+* Instead of rendering a grid of media as done on the media page, it might be nice to have a textual list
 * Mobile functionality
 
