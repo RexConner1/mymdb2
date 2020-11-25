@@ -1,6 +1,5 @@
 # MyMDB2
 A React app for grabbing titles using a UPC API and matching it to entries found with movie database(TMDB)
-# IMDB2 App 
 
 # Description <br>
 The Movie Database App was designed for User's to have the ability to search for some of their favorite movies/tv shows and also render some of the most popular ones. While using this app, users will be able to keep track of their personal collection of movies and also creating a wish list for movies they aspire to add to their collection. 
@@ -22,7 +21,7 @@ https://mymdb-react.herokuapp.com/
 ![My List Page](https://i.imgur.com/urzOEC0.png) <br>
 
 ## myMDB
-* Home Page - Home Page renders user a naviagational bar to Movies and TV Shows. Under any of these two the user can use the links to go to their personal collection or their wishlist. The carousel on the page will show the top 3 most popular movies according to TMDB API. 
+* Home Page - Home Page renders user a navigational bar to Movies and TV Shows. Under any of these two, the user can use the links to go to their personal collection or their wishlist. The carousel on the page will show the top 3 most popular movies according to TMDB API. 
 ![Home Page](https://i.imgur.com/p9CJYyWh.png)
 * Search Gallery - The Search Gallery under either Movie or TV Show will return results from user input UPC or Title. These two search criteria access different APIs but render results in the same format. 
 ![Search Gallery](https://i.imgur.com/qe1m9DRh.png)
@@ -30,7 +29,7 @@ https://mymdb-react.herokuapp.com/
 ![Detail Page](https://i.imgur.com/CJIryOIh.png)
 * Wish List - This page will render a list the user personally has selected to show movies and shows that the user wishes to possess. 
 ![Wish List](https://i.imgur.com/sksfLVAh.png)
-* Collection - This page will rendr a list of movies or shows that the user personally owns in their collection and helps them keep track of them. 
+* Collection - This page will render a list of movies or shows that the user personally owns in their collection and helps them keep track of them. 
 ![Collection](https://i.imgur.com/Rpfxfuch.png)
 
 # API
