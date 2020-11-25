@@ -1,3 +1,10 @@
+h1 {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+
 .products {
     display: inline-flex;
     flex-wrap: wrap;
@@ -16,7 +23,7 @@ img {
 
 .inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 100px;
 }
 
@@ -25,7 +32,12 @@ img {
     grid-column: 1;
 }
 
-.upc {
+.clear {
     grid-row: 1;
     grid-column: 2;
+}
+
+.upc {
+    grid-row: 1;
+    grid-column: 3;
 }
