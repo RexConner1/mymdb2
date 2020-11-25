@@ -97,38 +97,47 @@ class App extends Component {
   }
 
   addToMyMovies = (movie) => {
+    // console.log('movie:' + movie)
     const tempList = this.state.listOfMovies
-    tempList.push(movie)
-    console.log(tempList)
-    this.setState({
-      listOfMovies: tempList
-    })
+    if (!tempList.includes(movie)) {
+      tempList.push(movie)
+      console.log(tempList)
+      this.setState({
+        listOfMovies: tempList
+      })
+    }
   }
 
   addToMyShows = (show) => {
     const tempList = this.state.listOfTvShows
-    tempList.push(show)
-    console.log(tempList)
-    this.setState({
-      listOfTvShows: tempList
-    })
+    if (!tempList.includes(show)) {
+      tempList.push(show)
+      console.log(tempList)
+      this.setState({
+        listOfTvShows: tempList
+      })
+    }
   }
 
   addToShowWishList =(show) => {
     const tempList =this.state.wishListTvShows
-    tempList.push(show)
-    console.log(tempList)
-    this.setState({
-      wishListTvShows: tempList
-    })
+    if (!tempList.includes(show)) {
+      tempList.push(show)
+      console.log(tempList)
+      this.setState({
+        wishListTvShows: tempList
+      })
+    }
   }
   addToMovieWishList =(movie) => {
     const tempList = this.state.wishListMovies
-    tempList.push(movie)
-    console.log(tempList)
-    this.setState({
-      wishListMovies: tempList
-    })
+    if (!tempList.includes(movie)) {
+      tempList.push(movie)
+      console.log(tempList)
+      this.setState({
+        wishListMovies: tempList
+      })
+    }
   }
 
 
